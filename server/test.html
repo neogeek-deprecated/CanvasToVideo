@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<title>CanvasToVideo Server Test</title>
+<style>
+
+body {
+    margin: 1em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 1em;
+    line-height: 1.3em;
+}
+
+h1 {
+    font-weight: normal;
+    line-height: 1.3em;
+}
+
+a {
+    color: #00f;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>CanvasToVideo Server Test</h1>
+
+<canvas width="500" height="500"></canvas>
+
+<video width="500" height="500" autoplay="autoplay"><source src="output.mp4" type="video/mp4"></video>
+
+<p>Made by <a href="http://github.com/neogeek">@neogeek</a></p>
+
+<script src="fpsmeter.min.js"></script>
+<script src="../CanvasToVideo.min.js"></script>
+<script>
+
+(function () {
+
+    'use strict';
+
+    var context = document.querySelector('canvas').getContext('2d'),
+        meter = new FPSMeter( { graph: 1, position: 'absolute', left: 'auto', top: '20px', right: '20px' }),
+        ctv = new CanvasToVideo('capture.php', context.canvas),
+        radius = 0;
+
+    ctv.setCacheEnabled(true);
+    ctv.setImageQuality(60);
+
+    function draw () {
+
+        radius = radius + 1;
+
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+        context.save();
+
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+
+        context.restore();
+
+        context.save();
+
+        context.fillStyle = '#f00';
+        context.beginPath();
+        context.arc(context.canvas.width / 2, context.canvas.height / 2, radius, 0, 2 * Math.PI);
+        context.fill();
+        context.closePath();
+
+        context.restore();
+
+        ctv.capture();
+
+        meter.tick();
+
+        if (radius < context.canvas.width / 2) {
+
+            requestAnimationFrame(draw);
+
+        } else {
+
+            ctv.flush();
+
+        }
+
+    }
+
+    requestAnimationFrame(draw);
+
+}());
+
+</script>
+
+</body>
+</html>
