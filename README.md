@@ -2,6 +2,10 @@
 
 > An experiment in converting Canvas animations to video.
 
+##Documentation
+
+<http://rawgithub.com/neogeek/CanvasToVideo/master/docs/index.html>
+
 ##Setup
 
 ```javascript
