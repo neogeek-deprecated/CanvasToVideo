@@ -4,7 +4,7 @@
 
 ##Documentation
 
-<http://rawgithub.com/neogeek/CanvasToVideo/master/docs/index.html>
+<http://neo-geek.net/docs/CanvasToVideo/>
 
 ##Setup
 
