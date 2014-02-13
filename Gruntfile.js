@@ -72,7 +72,7 @@ module.exports = function (grunt) {
             casperjs: {
                 files: ['CanvasToVideo.js', 'tests/**/*.js'],
                 tasks: ['casperjs']
-            },
+            }
 
         }
 
