@@ -29,5 +29,5 @@ requestAnimationFrame(draw);
 ##Converting to Movie
 
 ```bash
-ffmpeg -i captured/screenshot_%06d.png -c:v libx264 -vf "fps=30,format=yuv420p,setpts=(1/2.5)*PTS" output.mp4
+$ ffmpeg -i captured/screenshot_%06d.png -c:v libx264 -vf "fps=30,format=yuv420p,setpts=(1/2.5)*PTS" output.mp4
 ```
