@@ -1,3 +1,5 @@
+[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies)
+
 #CanvasToVideo
 
 > An experiment in converting Canvas animations to video.
