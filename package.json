@@ -2,13 +2,13 @@
     "name": "CanvasToVideo",
     "version": "0.1.0beta",
     "devDependencies": {
-        "grunt": "0.4.2",
+        "grunt": "0.4.5",
         "grunt-casperjs": "1.4.0",
-        "grunt-contrib-watch": "0.5.3",
-        "grunt-contrib-uglify": "0.3.2",
-        "grunt-shell": "0.6.4",
-        "grunt-jslint": "1.1.4",
-        "grunt-notify": "0.2.17",
+        "grunt-contrib-watch": "0.6.1",
+        "grunt-contrib-uglify": "0.5.1",
+        "grunt-shell": "0.7.0",
+        "grunt-jslint": "1.1.12",
+        "grunt-notify": "0.3.1",
         "matchdep": "0.3.0"
     }
 }
