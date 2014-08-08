@@ -6,7 +6,7 @@
 
 ##Documentation
 
-<http://neo-geek.net/docs/CanvasToVideo/>
+[Read Online](http://rawgit.com/neogeek/CanvasToVideo/master/docs/index.html)
 
 ##Setup
 
