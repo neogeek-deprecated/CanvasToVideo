@@ -1,33 +1,14 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
 <title>CanvasToVideo - An experiment in converting Canvas animations to video.</title>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/css/bootstrap.min.css" />
 <style>
 
-.hll{background-color:#ffc}.c{color:#998;font-style:italic}.err{color:#a61717;background-color:#e3d2d2}.k{color:#000;font-weight:700}.o{color:#000;font-weight:700}.cm{color:#998;font-style:italic}.cp{color:#999;font-weight:700;font-style:italic}.c1{color:#998;font-style:italic}.cs{color:#999;font-weight:700;font-style:italic}.gd{color:#000;background-color:#fdd}.ge{color:#000;font-style:italic}.gr{color:#a00}.gh{color:#999}.gi{color:#000;background-color:#dfd}.go{color:#888}.gp{color:#555}.gs{font-weight:700}.gu{color:#aaa}.gt{color:#a00}.kc{color:#000;font-weight:700}.kd{color:#000;font-weight:700}.kn{color:#000;font-weight:700}.kp{color:#000;font-weight:700}.kr{color:#000;font-weight:700}.kt{color:#458;font-weight:700}.m{color:#099}.s{color:#d01040}.na{color:teal}.nb{color:#0086B3}.nc{color:#458;font-weight:700}.no{color:teal}.nd{color:#3c5d5d;font-weight:700}.ni{color:purple}.ne{color:#900;font-weight:700}.nf{color:#900;font-weight:700}.nl{color:#900;font-weight:700}.nn{color:#555}.nt{color:navy}.nv{color:teal}.ow{color:#000;font-weight:700}.w{color:#bbb}.mf{color:#099}.mh{color:#099}.mi{color:#099}.mo{color:#099}.sb{color:#d01040}.sc{color:#d01040}.sd{color:#d01040}.s2{color:#d01040}.se{color:#d01040}.sh{color:#d01040}.si{color:#d01040}.sx{color:#d01040}.sr{color:#009926}.s1{color:#d01040}.ss{color:#990073}.bp{color:#999}.vc{color:teal}.vg{color:teal}.vi{color:teal}.il{color:#099}
-
-@media (max-width: 992px) {
-
-    .container {
-        width: 970px !important;
-        max-width: none !important;
-    }
-    .col-md-3 {
-        width: 25% !important;
-        float: left;
-    }
-    .col-md-9 {
-        width: 75% !important;
-        float: left;
-    }
-
-}
-
-.method {
-    margin-bottom: 40px;
+.method h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .permalink {
@@ -48,7 +29,15 @@
     text-align: center;
 }
 
+pre .hljs {
+    padding: 0;
+    background: none;
+}
+
 </style>
+<script>
+(function(e,t,i){"use strict";var s=e.location.protocol==="file:"?"http:":e.location.protocol,c=["//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css","//cdn.jsdelivr.net/highlight.js/8.0/styles/github.css","//cdn.jsdelivr.net/highlight.js/8.0/highlight.min.js","//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"];c.forEach(function(e){var o;if(e.match(/\.js$/)){o=t.createElement("script");o.setAttribute("src",s+e)}else if(e.match(/\.css$/)){o=t.createElement("link");o.setAttribute("rel","stylesheet");o.setAttribute("href",s+e)}o.addEventListener("load",function(){if(this.hasAttribute("src")){c.splice(c.indexOf(this.getAttribute("src")),1)}else if(this.hasAttribute("href")){c.splice(c.indexOf(this.getAttribute("href")),1)}if(!c.length){if($.isReady){i()}else{$(document).ready(i)}}});t.head.appendChild(o)})})(window,document,function(){var e=window.location.hash,t=$('[id="'+e.replace(/#/,"")+'"]'),i=$(".code"),s=$(".scope-private"),c=$(".toggle-code-blocks");$toggle_private=$(".toggle-private");c.on("click",function(){if(c.is(":checked")){i.show()}else{i.hide()}});$toggle_private.on("click",function(){if($toggle_private.is(":checked")){s.show()}else{s.hide()}});i.hide();s.hide();if(t.length&&!t.is(":visible")){$toggle_private.trigger("click")}$(".examples pre code, .code pre code").each(function(){hljs.highlightBlock(this)})});
+</script>
 </head>
 
 <body>
@@ -58,56 +47,169 @@
     <div class="container">
 
         <div class="page-header">
-            <div class="pull-right">
-                <label><input type="checkbox" name="toggle-code" class="toggle-code-blocks" /> Toggle Code Blocks</label><br />
-                <label><input type="checkbox" name="toggle-private" class="toggle-private" /> Toggle Private Methods/Function</label>
+
+            <div class="pull-right hidden-sm hidden-xs">
+
+                <div>
+                    <label>
+                        <input type="checkbox" name="toggle-code" class="toggle-code-blocks">
+                        Toggle Code Blocks
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="toggle-private" class="toggle-private">
+                        Toggle Private Methods
+                    </label>
+                </div>
+
             </div>
+
             <h1>CanvasToVideo <small>An experiment in converting Canvas animations to video.</small></h1>
+
         </div>
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-sm hidden-xs">
 
                 <ul class="nav">
 
-                
+                    
 
-                <li class="scope-private"><a href="#putrequest">putRequest()</a></li>
+                        
 
-                
+                    
 
-                <li class="scope-public"><a href="#canvastovideo">CanvasToVideo()</a></li>
+                        
 
-                
+                            
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.capture">CanvasToVideo.capture()</a></li>
+                                <li class="scope-private">
+                                    <a href="#putrequest">putRequest()</a>
+                                </li>
 
-                
+                            
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.flush">CanvasToVideo.flush()</a></li>
+                        
 
-                
+                    
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.setcanvas">CanvasToVideo.setCanvas()</a></li>
+                        
 
-                
+                            
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.setcacheenabled">CanvasToVideo.setCacheEnabled()</a></li>
+                                <li class="scope-public">
+                                    <a href="#canvastovideo">CanvasToVideo()</a>
+                                </li>
 
-                
+                            
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.setendpoint">CanvasToVideo.setEndpoint()</a></li>
+                        
 
-                
+                    
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.setimagetype">CanvasToVideo.setImageType()</a></li>
+                        
 
-                
+                            
 
-                <li class="scope-public"><a href="#canvastovideo.prototype.setimagequality">CanvasToVideo.setImageQuality()</a></li>
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.capture">CanvasToVideo.capture()</a>
+                                </li>
 
-                
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.flush">CanvasToVideo.flush()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.setcanvas">CanvasToVideo.setCanvas()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.setcacheenabled">CanvasToVideo.setCacheEnabled()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.setendpoint">CanvasToVideo.setEndpoint()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.setimagetype">CanvasToVideo.setImageType()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                            
+
+                                <li class="scope-public">
+                                    <a href="#canvastovideo.prototype.setimagequality">CanvasToVideo.setImageQuality()</a>
+                                </li>
+
+                            
+
+                        
+
+                    
+
+                        
+
+                    
 
                 </ul>
 
@@ -117,643 +219,1073 @@
 
                 
 
-                <div class="method scope-private">
-
-                    <h2 id="putrequest"><a href="#putrequest" class="permalink">#</a>putRequest() <span class="label label-default">private</span></h2>
-
-                    <p>Sends a PUT request to a URL with the specified data and fires a callback upon completion.</p>
-
                     
-
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>url</b>
-                        <code>String</code>
-                        
-                    </p>
-                    <p>The URL for the PUT request.</p>
-
-                    
-
-                    <p>
-                        <b>data</b>
-                        <code>Object</code>
-                        
-                    </p>
-                    <p>The data to send.</p>
-
-                    
-
-                    <p>
-                        <b>callback</b>
-                        <code>Function</code>
-                        
-                        <span class="label label-default">Optional</span>
-                        
-                    </p>
-                    <p>The callback function to call once the request has completed.</p>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">putRequest</span><span class="p">(</span><span class="s1">&#39;capture.php&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">);</span> <span class="p">});</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="kd">function</span> <span class="nx">putRequest</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">window</span><span class="p">.</span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
-
-    <span class="nx">http</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[object Array]&#39;</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">callback</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="nx">http</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;readystatechange&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
-
-                <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-
-            <span class="p">}</span>
-
-        <span class="p">});</span>
-
-    <span class="p">}</span>
-
-    <span class="nx">http</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-
-<span class="p">}</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo"><a href="#canvastovideo" class="permalink">#</a>CanvasToVideo() </h2>
-
-                    <p>Creates a new CanvasToVideo object.</p>
-
                     
 
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>url</b>
-                        <code>String</code>
                         
-                    </p>
-                    <p>The URL for all PUT requests.</p>
 
-                    
+                            <div class="method scope-private">
 
-                    <p>
-                        <b>canvas</b>
-                        <code>Object</code>
+                                
+
+                                <h2 id="putrequest">
+                                    <a href="#putrequest" class="permalink">#</a> putRequest()
+                                    
+                                    <small>private method</small>
+                                    
+                                </h2>
+
+                                <p>Sends a PUT request to a URL with the specified data and fires a callback upon completion.</p>
+
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>url</b>
+                                                
+                                                    <code>String</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The URL for the PUT request.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>data</b>
+                                                
+                                                    <code>Object</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The data to send.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>callback</b>
+                                                
+                                                    <code>Function</code>
+                                                
+                                                
+                                                    <span class="label label-default">Optional</span>
+                                                
+                                            </p>
+                                            <p>The callback function to call once the request has completed.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>putRequest(&#39;capture.php&#39;, [], function() { alert(&#39;Done!&#39;); });
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>function putRequest(url, data, callback) {
+
+        var http = new window.XMLHttpRequest();
+
+        http.open(&#x27;put&#x27;, url);
+
+        if (Object.prototype.toString.call(data) === &#x27;[object Array]&#x27;) {
+
+            data = JSON.stringify(data);
+
+        }
+
+        if (String(typeof callback) === &#x27;function&#x27;) {
+
+            http.addEventListener(&#x27;readystatechange&#x27;, function () {
+
+                if (this.readyState === 4 &amp;&amp; this.status === 204) {
+
+                    callback.call(this);
+
+                }
+
+            });
+
+        }
+
+        http.send(data);
+
+    }</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
                         
-                    </p>
-                    <p>The canvas to capture frames from.</p>
 
                     
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="kd">var</span> <span class="nx">ctv</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CanvasToVideo</span><span class="p">(</span><span class="s1">&#39;capture.php&#39;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">));</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">CanvasToVideo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">imageType</span> <span class="o">=</span> <span class="s1">&#39;image/png&#39;</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">imageQuality</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">cache</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">cacheEnabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-
-    <span class="k">try</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Element passed to CanvasToVideo was not a valid canvas element.&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>Object</code> New CanvasToVideo object.</p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.capture"><a href="#canvastovideo.prototype.capture" class="permalink">#</a>CanvasToVideo.capture() </h2>
-
-                    <p>Method called after canvas drawing has occured to capture frame and either send to server or store in local temporary cache.</p>
-
                     
 
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="kd">function</span> <span class="nx">draw</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// draw objects to canvas</span>
-    <span class="nx">ctv</span><span class="p">.</span><span class="nx">capture</span><span class="p">();</span>
-    <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">draw</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">draw</span><span class="p">);</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">capture</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-
-    <span class="kd">var</span> <span class="nx">data</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="nx">data</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">toDataURL</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">imageType</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">imageQuality</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^[\W\w]*,/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cacheEnabled</span><span class="p">)</span> <span class="p">{</span>
-
-            <span class="k">this</span><span class="p">.</span><span class="nx">cache</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-            <span class="nx">putRequest</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="p">[</span><span class="nx">data</span><span class="p">]);</span>
-
-        <span class="p">}</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
-
-                
-
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.flush"><a href="#canvastovideo.prototype.flush" class="permalink">#</a>CanvasToVideo.flush() </h2>
-
-                    <p>Called once animation is complete to send all cached images to the server through the specified URL.</p>
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">flush</span><span class="p">();</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">flush</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cacheEnabled</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="nx">putRequest</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cache</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-
-            <span class="k">this</span><span class="p">.</span><span class="nx">cache</span> <span class="o">=</span> <span class="p">[];</span>
-
-        <span class="p">});</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
-
-                
-
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.setcanvas"><a href="#canvastovideo.prototype.setcanvas" class="permalink">#</a>CanvasToVideo.setCanvas() </h2>
-
-                    <p>Sets a new canvas tag once the CanvasToVideo object has already been created.</p>
-
-                    
-
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>canvas</b>
-                        <code>Object</code>
                         
-                    </p>
-                    <p>The canvas to capture frames from.</p>
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo">
+                                    <a href="#canvastovideo" class="permalink">#</a> CanvasToVideo()
+                                    
+                                </h2>
+
+                                <p>Creates a new CanvasToVideo object.</p>
+
+                                
+                                
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>url</b>
+                                                
+                                                    <code>String</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The URL for all PUT requests.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>canvas</b>
+                                                
+                                                    <code>Object</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The canvas to capture frames from.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>var ctv = new CanvasToVideo(&#39;capture.php&#39;, document.querySelector(&#39;canvas&#39;));
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>var CanvasToVideo = function (url, canvas) {
+
+        this.url = url;
+        this.canvas = canvas;
+
+        this.imageType = &#x27;image/png&#x27;;
+        this.imageQuality = 100;
+
+        this.cache = [];
+        this.cacheEnabled = false;
+
+        try {
+
+            this.canvas.getContext(&#x27;2d&#x27;);
+
+        } catch (e) {
+
+            this.canvas = null;
+
+            throw new Error(&#x27;Element passed to CanvasToVideo was not a valid canvas element.&#x27;);
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>Object</code>  New CanvasToVideo object.</p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">setCanvas</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.stage&#39;</span><span class="p">));</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setCanvas</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
-
-    <span class="k">try</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Element passed to CanvasToVideo.setCanvas was not a valid canvas element.&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.setcacheenabled"><a href="#canvastovideo.prototype.setcacheenabled" class="permalink">#</a>CanvasToVideo.setCacheEnabled() </h2>
-
-                    <p>Sets if caching is enabled or not.</p>
-
                     
 
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>enabled</b>
-                        <code>Boolean</code>
                         
-                    </p>
-                    <p>Boolean flag for enabling cache.</p>
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.capture">
+                                    <a href="#canvastovideo.prototype.capture" class="permalink">#</a> CanvasToVideo.capture()
+                                    
+                                </h2>
+
+                                <p>Method called after canvas drawing has occured to capture frame and either send to server or store in local temporary cache.</p>
+
+                                
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>function draw () {
+    // draw objects to canvas
+    ctv.capture();
+    requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.capture  = function () {
+
+        var data;
+
+        if (this.canvas) {
+
+            data = this.canvas.toDataURL(this.imageType, this.imageQuality).replace(/^[\W\w]*,/, &#x27;&#x27;);
+
+            if (this.cacheEnabled) {
+
+                this.cache.push(data);
+
+            } else {
+
+                putRequest(this.url, [data]);
+
+            }
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">setCacheEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// Caching enabled.</span>
-<span class="nx">ctv</span><span class="p">.</span><span class="nx">setCacheEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span> <span class="c1">// Caching disabled.</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setCacheEnabled</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">cacheEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">cacheEnabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.setendpoint"><a href="#canvastovideo.prototype.setendpoint" class="permalink">#</a>CanvasToVideo.setEndpoint() </h2>
-
-                    <p>Sets a new URL for sending all PUT requests.</p>
-
                     
 
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>url</b>
-                        <code>String</code>
                         
-                    </p>
-                    <p>The new URL for all PUT requests.</p>
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.flush">
+                                    <a href="#canvastovideo.prototype.flush" class="permalink">#</a> CanvasToVideo.flush()
+                                    
+                                </h2>
+
+                                <p>Called once animation is complete to send all cached images to the server through the specified URL.</p>
+
+                                
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.flush();
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.flush  = function () {
+
+        if (this.cacheEnabled) {
+
+            putRequest(this.url, this.cache, function () {
+
+                this.cache = [];
+
+            });
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">setEndpoint</span><span class="p">(</span><span class="s1">&#39;different_capture_url.php&#39;</span><span class="p">);</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setEndpoint</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">this</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.setimagetype"><a href="#canvastovideo.prototype.setimagetype" class="permalink">#</a>CanvasToVideo.setImageType() </h2>
-
-                    <p>Sets the image type saved from the canvas. Can be either image/png or image/jpeg.</p>
-
                     
 
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>type</b>
-                        <code>String</code>
                         
-                    </p>
-                    <p>The type of image to be captured from the canvas.</p>
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.setcanvas">
+                                    <a href="#canvastovideo.prototype.setcanvas" class="permalink">#</a> CanvasToVideo.setCanvas()
+                                    
+                                </h2>
+
+                                <p>Sets a new canvas tag once the CanvasToVideo object has already been created.</p>
+
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>canvas</b>
+                                                
+                                                    <code>Object</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The canvas to capture frames from.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.setCanvas(document.querySelector(&#39;.stage&#39;));
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.setCanvas = function (canvas) {
+
+        this.canvas = canvas;
+
+        try {
+
+            this.canvas.getContext(&#x27;2d&#x27;);
+
+        } catch (e) {
+
+            this.canvas = null;
+
+            throw new Error(&#x27;Element passed to CanvasToVideo.setCanvas was not a valid canvas element.&#x27;);
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
-
-                    
-
-                    
-
-                    
-
-                    
-
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">setImageType</span><span class="p">(</span><span class="s1">&#39;image/png&#39;</span><span class="p">);</span>
-<span class="nx">ctv</span><span class="p">.</span><span class="nx">setImageType</span><span class="p">(</span><span class="s1">&#39;image/jpeg&#39;</span><span class="p">);</span>
-</pre></div>
-
-
-                    
-
-                    <div class="code">
-
-                        <h3>Code</h3>
-
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setImageType</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/image\/(png|jpeg)/</span><span class="p">))</span> <span class="p">{</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">imageType</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
-
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">type</span> <span class="o">+</span> <span class="s1">&#39; is not a valid image type. The valid types are: image/png and image/jpeg.&#39;</span><span class="p">);</span>
-
-    <span class="p">}</span>
-
-<span class="p">};</span>
-</pre></div>
-
-
-                    </div>
-
-                    <h3>Returns</h3>
-
-                    <p><code>void</code> </p>
-
-                </div>
 
                 
 
-                <div class="method scope-public">
-
-                    <h2 id="canvastovideo.prototype.setimagequality"><a href="#canvastovideo.prototype.setimagequality" class="permalink">#</a>CanvasToVideo.setImageQuality() </h2>
-
-                    <p>Sets the image quality saved from the canvas. Must be an integer between 0 and 100.</p>
-
                     
 
-                    <h3>Parameters</h3>
-
-                    
-
-                    <p>
-                        <b>type</b>
-                        <code>Integer</code>
                         
-                    </p>
-                    <p>Number between 0 and 100 specifying the quality.</p>
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.setcacheenabled">
+                                    <a href="#canvastovideo.prototype.setcacheenabled" class="permalink">#</a> CanvasToVideo.setCacheEnabled()
+                                    
+                                </h2>
+
+                                <p>Sets if caching is enabled or not.</p>
+
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>enabled</b>
+                                                
+                                                    <code>Boolean</code>
+                                                
+                                                
+                                            </p>
+                                            <p>Boolean flag for enabling cache.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.setCacheEnabled(true); // Caching enabled.
+ctv.setCacheEnabled(false); // Caching disabled.
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.setCacheEnabled = function (enabled) {
+
+        if (enabled) {
+
+            this.cacheEnabled = true;
+
+        } else {
+
+            this.cacheEnabled = false;
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
 
-                    
+                
 
                     
 
-                    
+                        
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.setendpoint">
+                                    <a href="#canvastovideo.prototype.setendpoint" class="permalink">#</a> CanvasToVideo.setEndpoint()
+                                    
+                                </h2>
+
+                                <p>Sets a new URL for sending all PUT requests.</p>
+
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>url</b>
+                                                
+                                                    <code>String</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The new URL for all PUT requests.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.setEndpoint(&#39;different_capture_url.php&#39;);
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.setEndpoint  = function (url) {
+
+        this.url = url;
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
 
                     
 
-                    <h3>Examples</h3>
-
-                    <div class="highlight"><pre><span class="nx">ctv</span><span class="p">.</span><span class="nx">setImageQuality</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
-</pre></div>
-
+                
 
                     
 
-                    <div class="code">
+                        
 
-                        <h3>Code</h3>
+                            <div class="method scope-public">
 
-                        <div class="highlight"><pre><span class="nx">CanvasToVideo</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setImageQuality</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">quality</span><span class="p">)</span> <span class="p">{</span>
+                                
 
-    <span class="k">if</span> <span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">quality</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+                                <h2 id="canvastovideo.prototype.setimagetype">
+                                    <a href="#canvastovideo.prototype.setimagetype" class="permalink">#</a> CanvasToVideo.setImageType()
+                                    
+                                </h2>
 
-        <span class="k">this</span><span class="p">.</span><span class="nx">imageQuality</span> <span class="o">=</span> <span class="nx">quality</span><span class="p">;</span>
+                                <p>Sets the image type saved from the canvas. Can be either image/png or image/jpeg.</p>
 
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                                
+                                
+                                
 
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">quality</span> <span class="o">+</span> <span class="s1">&#39; is not a valid number. Must be a number between 0 (lowest quality) and 100 (highest quality).&#39;</span><span class="p">);</span>
+                                
 
-    <span class="p">}</span>
+                                <section class="parameters">
 
-<span class="p">};</span>
-</pre></div>
+                                    <h3>Parameters</h3>
 
+                                    
 
-                    </div>
+                                        
 
-                    <h3>Returns</h3>
+                                            <p>
+                                                <b>type</b>
+                                                
+                                                    <code>String</code>
+                                                
+                                                
+                                            </p>
+                                            <p>The type of image to be captured from the canvas.</p>
 
-                    <p><code>void</code> </p>
+                                        
 
-                </div>
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.setImageType(&#39;image/png&#39;);
+ctv.setImageType(&#39;image/jpeg&#39;);
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.setImageType  = function (type) {
+
+        if (type.match(/image\/(png|jpeg)/)) {
+
+            this.imageType = type;
+
+        } else {
+
+            throw new Error(type + &#x27; is not a valid image type. The valid types are: image/png and image/jpeg.&#x27;);
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
+
+                    
+
+                
+
+                    
+
+                        
+
+                            <div class="method scope-public">
+
+                                
+
+                                <h2 id="canvastovideo.prototype.setimagequality">
+                                    <a href="#canvastovideo.prototype.setimagequality" class="permalink">#</a> CanvasToVideo.setImageQuality()
+                                    
+                                </h2>
+
+                                <p>Sets the image quality saved from the canvas. Must be an integer between 0 and 100.</p>
+
+                                
+                                
+                                
+
+                                
+
+                                <section class="parameters">
+
+                                    <h3>Parameters</h3>
+
+                                    
+
+                                        
+
+                                            <p>
+                                                <b>type</b>
+                                                
+                                                    <code>Integer</code>
+                                                
+                                                
+                                            </p>
+                                            <p>Number between 0 and 100 specifying the quality.</p>
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                        
+
+                                    
+
+                                </section>
+
+                                
+
+                                
+
+                                
+
+                                <section class="examples">
+
+                                    <h3>Examples</h3>
+
+                                    <pre><code>ctv.setImageQuality(60);
+</code></pre>
+
+                                </section>
+
+                                <section class="code">
+
+                                    <h3>Code</h3>
+
+                                    <pre><code>CanvasToVideo.prototype.setImageQuality  = function (quality) {
+
+        if (String(typeof quality) === &#x27;number&#x27;) {
+
+            this.imageQuality = quality;
+
+        } else {
+
+            throw new Error(quality + &#x27; is not a valid number. Must be a number between 0 (lowest quality) and 100 (highest quality).&#x27;);
+
+        }
+
+    };</code></pre>
+
+                                </section>
+
+                                <h3>Returns</h3>
+
+                                
+
+                                    
+
+                                
+
+                                    
+
+                                        <p><code>void</code>  </p>
+
+                                    
+
+                                
+
+                                    
+
+                                
+
+                            </div>
+
+                        
+
+                    
+
+                
+
+                    
 
                 
 
@@ -769,56 +1301,11 @@
 
     <div class="container">
 
-        <p>Documentation generated with <a href="https://github.com/visionmedia/dox">dox</a> and <a href="https://github.com/neogeek/doxdox">doxdox</a>.
+        <p>Documentation generated with <a href="https://github.com/neogeek/doxdox">doxdox</a>.</p>
 
     </div>
 
 </footer>
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>
-
-(function () {
-
-    var hash = window.location.hash,
-        $hash_elem = $('[id="' + hash.replace(/#/, '') + '"]'),
-        $code_block = $('.code'),
-        $scope_private = $('.scope-private'),
-        $toggle_code_blocks = $('.toggle-code-blocks')
-        $toggle_private = $('.toggle-private');
-
-    $toggle_code_blocks.on('click', function () {
-
-        if ($toggle_code_blocks.is(':checked')) {
-            $code_block.show();
-        } else {
-            $code_block.hide();
-        }
-
-    });
-
-    $toggle_private.on('click', function () {
-
-        if ($toggle_private.is(':checked')) {
-            $scope_private.show();
-        } else {
-            $scope_private.hide();
-        }
-
-    });
-
-    $code_block.hide();
-    $scope_private.hide();
-
-    if ($hash_elem.length && !$hash_elem.is(':visible')) {
-
-        $toggle_private.trigger('click');
-
-    }
-
-}());
-
-</script>
 
 </body>
 </html>
