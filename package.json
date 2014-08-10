@@ -1,6 +1,8 @@
 {
     "name": "CanvasToVideo",
+    "description": "An experiment in converting Canvas animations to video.",
     "version": "0.1.0beta",
+    "main": "CanvasToVideo.js",
     "devDependencies": {
         "grunt": "0.4.5",
         "grunt-casperjs": "1.4.0",
