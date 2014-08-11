@@ -1,4 +1,4 @@
-[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies)
+[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies) [![](http://doxdox.herokuapp.com/images/badge.svg)](http://doxdox.herokuapp.com/neogeek/CanvasToVideo)
 
 #CanvasToVideo
 
@@ -6,7 +6,7 @@
 
 ##Documentation
 
-[Read Online](http://rawgit.com/neogeek/CanvasToVideo/master/docs/index.html)
+[Read Online](http://doxdox.herokuapp.com/neogeek/CanvasToVideo)
 
 ##Setup
 
