@@ -16,7 +16,7 @@
      *
      * @param {String} url The URL for the PUT request.
      * @param {Object} data The data to send.
-     * @param {Function?} callback The callback function to call once the request has completed.
+     * @param {Function} [callback] The callback function to call once the request has completed.
      * @return {void}
      * @api private
      */

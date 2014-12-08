@@ -3,17 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>CanvasToVideo - An experiment in converting Canvas animations to video.</title>
+<title>CanvasToVideo &#8212; An experiment in converting Canvas animations to video.</title>
 <style>
 
+.back-to-top {
+    display: none;
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    z-index: 999;
+}
+
+.back-to-top a {
+    display: block;
+    padding: .5em .5em .5em 1.5em;
+    line-height: 1em;
+    border-radius: .25em;
+    background: #fff url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxM3B4IiBoZWlnaHQ9IjE0cHgiIHZpZXdCb3g9IjAgMCAxMyAxNCI+CiAgICA8cGF0aCBkPSJNNy4xODc2MTE1NiwxMyBMNy4xODc2MTE1Niw1LjQ5MjQ5NzAzIEwxMC40NTg3ODUzLDUuNDkyNDk3MDMgTDUuMDk5MzE3NjMsMC4xMTM1NTgxMjkgTC0wLjI2MDE1LDUuNDkyNDk3MDMgTDMuMDExMDIzNzEsNS40OTI0OTcwMyBMMy4wMTEwMjM3MSwxMyBMNy4xODc2MTE1NiwxMyBaIiBmaWxsPSIjNDI4YmNhIj48L3BhdGg+Cjwvc3ZnPgo=) no-repeat .5em center;
+}
+
+.menu {
+    margin: 1.5em 0 0 0;
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu li a {
+    display: block;
+    padding: .25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu li ul {
+    margin: .25em 0 .25em 1em;
+    padding: 0;
+}
+
+.menu .scope-private {
+    opacity: 0.5;
+}
+
 .method h2 {
+    line-height: 1.3em;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 .permalink {
     position: absolute;
-    margin-left: -25px;
+    margin-left: -.75em;
     font-weight: normal;
     color: #eee;
 }
@@ -36,11 +78,13 @@ pre .hljs {
 
 </style>
 <script>
-(function(e,t,i){"use strict";var s=e.location.protocol==="file:"?"http:":e.location.protocol,c=["//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css","//cdn.jsdelivr.net/highlight.js/8.0/styles/github.css","//cdn.jsdelivr.net/highlight.js/8.0/highlight.min.js","//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"];c.forEach(function(e){var o;if(e.match(/\.js$/)){o=t.createElement("script");o.setAttribute("src",s+e)}else if(e.match(/\.css$/)){o=t.createElement("link");o.setAttribute("rel","stylesheet");o.setAttribute("href",s+e)}o.addEventListener("load",function(){if(this.hasAttribute("src")){c.splice(c.indexOf(this.getAttribute("src")),1)}else if(this.hasAttribute("href")){c.splice(c.indexOf(this.getAttribute("href")),1)}if(!c.length){if($.isReady){i()}else{$(document).ready(i)}}});t.head.appendChild(o)})})(window,document,function(){var e=window.location.hash,t=$('[id="'+e.replace(/#/,"")+'"]'),i=$(".code"),s=$(".scope-private"),c=$(".toggle-code-blocks");$toggle_private=$(".toggle-private");c.on("click",function(){if(c.is(":checked")){i.show()}else{i.hide()}});$toggle_private.on("click",function(){if($toggle_private.is(":checked")){s.show()}else{s.hide()}});i.hide();s.hide();if(t.length&&!t.is(":visible")){$toggle_private.trigger("click")}$(".examples pre code, .code pre code").each(function(){hljs.highlightBlock(this)})});
+(function(e,i,t){"use strict";var o=e.location.protocol==="file:"?"http:":e.location.protocol,s=["//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css","//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css","//code.jquery.com/jquery-2.1.1.js","//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"];function c(e){var l;if(e.match(/\.js$/)){l=i.createElement("script");l.setAttribute("src",o+e)}else if(e.match(/\.css$/)){l=i.createElement("link");l.setAttribute("rel","stylesheet");l.setAttribute("href",o+e)}l.addEventListener("load",function(){if(s.length){c(s.shift())}else{if($.isReady){t()}else{$(document).ready(t)}}});i.head.appendChild(l)}c(s.shift())})(window,document,function(){"use strict";var e=window.location.hash,i=$('[id="'+e.replace(/#/,"")+'"]'),t=$(".code"),o=$(".scope-private"),s=$(".toggle-code-blocks"),c=$(".toggle-private"),l=$(".back-to-top");function n(){if(window.scrollY>100&&l.not(":visible")){l.fadeIn()}else if(window.scrollY<100&&l.is(":visible")){l.fadeOut()}}s.on("click",function(){if(s.is(":checked")){t.show()}else{t.hide()}});c.on("click",function(){if(c.is(":checked")){o.show()}else{o.hide()}});t.hide();o.hide();if(i.length&&!i.is(":visible")){c.trigger("click")}$("pre code:not(.hljs)").each(function(){hljs.highlightBlock(this)});$(window).on("scroll",n);n()});
 </script>
 </head>
 
 <body>
+
+<div class="back-to-top"><a href="#">Back to Top</a></div>
 
 <div class="wrap">
 
@@ -73,143 +117,103 @@ pre .hljs {
 
             <div class="col-md-3 hidden-sm hidden-xs">
 
-                <ul class="nav">
+                <ul class="menu">
 
-                    
 
-                        
+                    <li>
+                        <b>CanvasToVideo.js</b>
+                        <ul>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-private">
-                                    <a href="#putrequest">putRequest()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-private">
+                                        <a href="#CanvasToVideo.js-putrequest" title="putRequest()">putRequest()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo">CanvasToVideo()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo" title="CanvasToVideo()">CanvasToVideo()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.capture">CanvasToVideo.capture()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.capture" title="CanvasToVideo.capture()">CanvasToVideo.capture()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.flush">CanvasToVideo.flush()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.flush" title="CanvasToVideo.flush()">CanvasToVideo.flush()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.setcanvas">CanvasToVideo.setCanvas()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.setcanvas" title="CanvasToVideo.setCanvas()">CanvasToVideo.setCanvas()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.setcacheenabled">CanvasToVideo.setCacheEnabled()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.setcacheenabled" title="CanvasToVideo.setCacheEnabled()">CanvasToVideo.setCacheEnabled()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.setendpoint">CanvasToVideo.setEndpoint()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.setendpoint" title="CanvasToVideo.setEndpoint()">CanvasToVideo.setEndpoint()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.setimagetype">CanvasToVideo.setImageType()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.setimagetype" title="CanvasToVideo.setImageType()">CanvasToVideo.setImageType()</a>
+                                    </li>
 
-                    
 
-                        
 
-                            
 
-                                <li class="scope-public">
-                                    <a href="#canvastovideo.prototype.setimagequality">CanvasToVideo.setImageQuality()</a>
-                                </li>
 
-                            
 
-                        
+                                    <li class="scope-public">
+                                        <a href="#CanvasToVideo.js-canvastovideo.prototype.setimagequality" title="CanvasToVideo.setImageQuality()">CanvasToVideo.setImageQuality()</a>
+                                    </li>
 
-                    
 
-                        
 
-                    
+
+
+
+                        </ul>
+
+                    </li>
+
 
                 </ul>
 
@@ -217,25 +221,19 @@ pre .hljs {
 
             <div class="col-md-9">
 
-                
 
-                    
 
-                
 
-                    
 
-                        
+
 
                             <div class="method scope-private">
 
                                 
 
-                                <h2 id="putrequest">
-                                    <a href="#putrequest" class="permalink">#</a> putRequest()
-                                    
+                                <h2 id="CanvasToVideo.js-putrequest">
+                                    <a href="#CanvasToVideo.js-putrequest" class="permalink">#</a> putRequest()
                                     <small>private method</small>
-                                    
                                 </h2>
 
                                 <p>Sends a PUT request to a URL with the specified data and fires a callback upon completion.</p>
@@ -248,76 +246,49 @@ pre .hljs {
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>url</b>
-                                                
                                                     <code>String</code>
-                                                
-                                                
                                             </p>
                                             <p>The URL for the PUT request.</p>
 
-                                        
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>data</b>
-                                                
                                                     <code>Object</code>
-                                                
-                                                
                                             </p>
                                             <p>The data to send.</p>
 
-                                        
 
-                                    
 
-                                        
 
                                             <p>
-                                                <b>callback</b>
-                                                
+                                                <b>[callback]</b>
                                                     <code>Function</code>
-                                                
-                                                
                                                     <span class="label label-default">Optional</span>
-                                                
                                             </p>
                                             <p>The callback function to call once the request has completed.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -326,91 +297,85 @@ pre .hljs {
                                     <pre><code>putRequest(&#39;capture.php&#39;, [], function() { alert(&#39;Done!&#39;); });
 </code></pre>
 
+
+
+
+
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>function putRequest(url, data, callback) {
+                                    <pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">putRequest</span><span class="hljs-params">(url, data, callback)</span> </span>{
 
-        var http = new window.XMLHttpRequest();
+    <span class="hljs-keyword">var</span> http = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.XMLHttpRequest();
 
-        http.open(&#x27;put&#x27;, url);
+    http.open(<span class="hljs-string">'put'</span>, url);
 
-        if (Object.prototype.toString.call(data) === &#x27;[object Array]&#x27;) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(data) === <span class="hljs-string">'[object Array]'</span>) {
 
-            data = JSON.stringify(data);
+        data = <span class="hljs-built_in">JSON</span>.stringify(data);
 
-        }
+    }
 
-        if (String(typeof callback) === &#x27;function&#x27;) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">String</span>(<span class="hljs-keyword">typeof</span> callback) === <span class="hljs-string">'function'</span>) {
 
-            http.addEventListener(&#x27;readystatechange&#x27;, function () {
+        http.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-                if (this.readyState === 4 &amp;&amp; this.status === 204) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.readyState === <span class="hljs-number">4</span> &amp;&amp; <span class="hljs-keyword">this</span>.status === <span class="hljs-number">204</span>) {
 
-                    callback.call(this);
+                callback.call(<span class="hljs-keyword">this</span>);
 
-                }
+            }
 
-            });
+        });
 
-        }
+    }
 
-        http.send(data);
+    http.send(data);
 
-    }</code></pre>
+}</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo">
-                                    <a href="#canvastovideo" class="permalink">#</a> CanvasToVideo()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo">
+                                    <a href="#CanvasToVideo.js-canvastovideo" class="permalink">#</a> CanvasToVideo()
                                 </h2>
 
                                 <p>Creates a new CanvasToVideo object.</p>
@@ -421,59 +386,39 @@ pre .hljs {
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>url</b>
-                                                
                                                     <code>String</code>
-                                                
-                                                
                                             </p>
                                             <p>The URL for all PUT requests.</p>
 
-                                        
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>canvas</b>
-                                                
                                                     <code>Object</code>
-                                                
-                                                
                                             </p>
                                             <p>The canvas to capture frames from.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -482,93 +427,85 @@ pre .hljs {
                                     <pre><code>var ctv = new CanvasToVideo(&#39;capture.php&#39;, document.querySelector(&#39;canvas&#39;));
 </code></pre>
 
+
+
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>var CanvasToVideo = function (url, canvas) {
+                                    <pre><code class="hljs"><span class="hljs-keyword">var</span> CanvasToVideo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url, canvas)</span> </span>{
 
-        this.url = url;
-        this.canvas = canvas;
+    <span class="hljs-keyword">this</span>.url = url;
+    <span class="hljs-keyword">this</span>.canvas = canvas;
 
-        this.imageType = &#x27;image/png&#x27;;
-        this.imageQuality = 100;
+    <span class="hljs-keyword">this</span>.imageType = <span class="hljs-string">'image/png'</span>;
+    <span class="hljs-keyword">this</span>.imageQuality = <span class="hljs-number">100</span>;
 
-        this.cache = [];
-        this.cacheEnabled = false;
+    <span class="hljs-keyword">this</span>.cache = [];
+    <span class="hljs-keyword">this</span>.cacheEnabled = <span class="hljs-literal">false</span>;
 
-        try {
+    <span class="hljs-keyword">try</span> {
 
-            this.canvas.getContext(&#x27;2d&#x27;);
+        <span class="hljs-keyword">this</span>.canvas.getContext(<span class="hljs-string">'2d'</span>);
 
-        } catch (e) {
+    } <span class="hljs-keyword">catch</span> (e) {
 
-            this.canvas = null;
+        <span class="hljs-keyword">this</span>.canvas = <span class="hljs-literal">null</span>;
 
-            throw new Error(&#x27;Element passed to CanvasToVideo was not a valid canvas element.&#x27;);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Element passed to CanvasToVideo was not a valid canvas element.'</span>);
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>Object</code>  New CanvasToVideo object.</p>
+                                        <p><code>Object</code> </p>
+                                        <p>New CanvasToVideo object.</p>
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.capture">
-                                    <a href="#canvastovideo.prototype.capture" class="permalink">#</a> CanvasToVideo.capture()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.capture">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.capture" class="permalink">#</a> CanvasToVideo.capture()
                                 </h2>
 
                                 <p>Method called after canvas drawing has occured to capture frame and either send to server or store in local temporary cache.</p>
 
                                 
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -582,82 +519,74 @@ pre .hljs {
 requestAnimationFrame(draw);
 </code></pre>
 
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.capture  = function () {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.capture  = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-        var data;
+    <span class="hljs-keyword">var</span> data;
 
-        if (this.canvas) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.canvas) {
 
-            data = this.canvas.toDataURL(this.imageType, this.imageQuality).replace(/^[\W\w]*,/, &#x27;&#x27;);
+        data = <span class="hljs-keyword">this</span>.canvas.toDataURL(<span class="hljs-keyword">this</span>.imageType, <span class="hljs-keyword">this</span>.imageQuality).replace(<span class="hljs-regexp">/^[\W\w]*,/</span>, <span class="hljs-string">''</span>);
 
-            if (this.cacheEnabled) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.cacheEnabled) {
 
-                this.cache.push(data);
+            <span class="hljs-keyword">this</span>.cache.push(data);
 
-            } else {
+        } <span class="hljs-keyword">else</span> {
 
-                putRequest(this.url, [data]);
-
-            }
+            putRequest(<span class="hljs-keyword">this</span>.url, [data]);
 
         }
 
-    };</code></pre>
+    }
+
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.flush">
-                                    <a href="#canvastovideo.prototype.flush" class="permalink">#</a> CanvasToVideo.flush()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.flush">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.flush" class="permalink">#</a> CanvasToVideo.flush()
                                 </h2>
 
                                 <p>Called once animation is complete to send all cached images to the server through the specified URL.</p>
 
                                 
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -666,63 +595,57 @@ requestAnimationFrame(draw);
                                     <pre><code>ctv.flush();
 </code></pre>
 
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.flush  = function () {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.flush  = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-        if (this.cacheEnabled) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.cacheEnabled) {
 
-            putRequest(this.url, this.cache, function () {
+        putRequest(<span class="hljs-keyword">this</span>.url, <span class="hljs-keyword">this</span>.cache, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-                this.cache = [];
+            <span class="hljs-keyword">this</span>.cache = [];
 
-            });
+        });
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.setcanvas">
-                                    <a href="#canvastovideo.prototype.setcanvas" class="permalink">#</a> CanvasToVideo.setCanvas()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.setcanvas">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.setcanvas" class="permalink">#</a> CanvasToVideo.setCanvas()
                                 </h2>
 
                                 <p>Sets a new canvas tag once the CanvasToVideo object has already been created.</p>
@@ -731,44 +654,30 @@ requestAnimationFrame(draw);
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>canvas</b>
-                                                
                                                     <code>Object</code>
-                                                
-                                                
                                             </p>
                                             <p>The canvas to capture frames from.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -777,71 +686,65 @@ requestAnimationFrame(draw);
                                     <pre><code>ctv.setCanvas(document.querySelector(&#39;.stage&#39;));
 </code></pre>
 
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.setCanvas = function (canvas) {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.setCanvas = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(canvas)</span> </span>{
 
-        this.canvas = canvas;
+    <span class="hljs-keyword">this</span>.canvas = canvas;
 
-        try {
+    <span class="hljs-keyword">try</span> {
 
-            this.canvas.getContext(&#x27;2d&#x27;);
+        <span class="hljs-keyword">this</span>.canvas.getContext(<span class="hljs-string">'2d'</span>);
 
-        } catch (e) {
+    } <span class="hljs-keyword">catch</span> (e) {
 
-            this.canvas = null;
+        <span class="hljs-keyword">this</span>.canvas = <span class="hljs-literal">null</span>;
 
-            throw new Error(&#x27;Element passed to CanvasToVideo.setCanvas was not a valid canvas element.&#x27;);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Element passed to CanvasToVideo.setCanvas was not a valid canvas element.'</span>);
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.setcacheenabled">
-                                    <a href="#canvastovideo.prototype.setcacheenabled" class="permalink">#</a> CanvasToVideo.setCacheEnabled()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.setcacheenabled">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.setcacheenabled" class="permalink">#</a> CanvasToVideo.setCacheEnabled()
                                 </h2>
 
                                 <p>Sets if caching is enabled or not.</p>
@@ -850,44 +753,30 @@ requestAnimationFrame(draw);
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>enabled</b>
-                                                
                                                     <code>Boolean</code>
-                                                
-                                                
                                             </p>
                                             <p>Boolean flag for enabling cache.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -897,67 +786,61 @@ requestAnimationFrame(draw);
 ctv.setCacheEnabled(false); // Caching disabled.
 </code></pre>
 
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.setCacheEnabled = function (enabled) {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.setCacheEnabled = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(enabled)</span> </span>{
 
-        if (enabled) {
+    <span class="hljs-keyword">if</span> (enabled) {
 
-            this.cacheEnabled = true;
+        <span class="hljs-keyword">this</span>.cacheEnabled = <span class="hljs-literal">true</span>;
 
-        } else {
+    } <span class="hljs-keyword">else</span> {
 
-            this.cacheEnabled = false;
+        <span class="hljs-keyword">this</span>.cacheEnabled = <span class="hljs-literal">false</span>;
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.setendpoint">
-                                    <a href="#canvastovideo.prototype.setendpoint" class="permalink">#</a> CanvasToVideo.setEndpoint()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.setendpoint">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.setendpoint" class="permalink">#</a> CanvasToVideo.setEndpoint()
                                 </h2>
 
                                 <p>Sets a new URL for sending all PUT requests.</p>
@@ -966,44 +849,30 @@ ctv.setCacheEnabled(false); // Caching disabled.
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>url</b>
-                                                
                                                     <code>String</code>
-                                                
-                                                
                                             </p>
                                             <p>The new URL for all PUT requests.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -1012,59 +881,53 @@ ctv.setCacheEnabled(false); // Caching disabled.
                                     <pre><code>ctv.setEndpoint(&#39;different_capture_url.php&#39;);
 </code></pre>
 
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.setEndpoint  = function (url) {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.setEndpoint  = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(url)</span> </span>{
 
-        this.url = url;
+    <span class="hljs-keyword">this</span>.url = url;
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.setimagetype">
-                                    <a href="#canvastovideo.prototype.setimagetype" class="permalink">#</a> CanvasToVideo.setImageType()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.setimagetype">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.setimagetype" class="permalink">#</a> CanvasToVideo.setImageType()
                                 </h2>
 
                                 <p>Sets the image type saved from the canvas. Can be either image/png or image/jpeg.</p>
@@ -1073,44 +936,30 @@ ctv.setCacheEnabled(false); // Caching disabled.
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>type</b>
-                                                
                                                     <code>String</code>
-                                                
-                                                
                                             </p>
                                             <p>The type of image to be captured from the canvas.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -1120,67 +969,61 @@ ctv.setCacheEnabled(false); // Caching disabled.
 ctv.setImageType(&#39;image/jpeg&#39;);
 </code></pre>
 
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.setImageType  = function (type) {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.setImageType  = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type)</span> </span>{
 
-        if (type.match(/image\/(png|jpeg)/)) {
+    <span class="hljs-keyword">if</span> (type.match(<span class="hljs-regexp">/image\/(png|jpeg)/</span>)) {
 
-            this.imageType = type;
+        <span class="hljs-keyword">this</span>.imageType = type;
 
-        } else {
+    } <span class="hljs-keyword">else</span> {
 
-            throw new Error(type + &#x27; is not a valid image type. The valid types are: image/png and image/jpeg.&#x27;);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(type + <span class="hljs-string">' is not a valid image type. The valid types are: image/png and image/jpeg.'</span>);
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                        
 
                             <div class="method scope-public">
 
                                 
 
-                                <h2 id="canvastovideo.prototype.setimagequality">
-                                    <a href="#canvastovideo.prototype.setimagequality" class="permalink">#</a> CanvasToVideo.setImageQuality()
-                                    
+                                <h2 id="CanvasToVideo.js-canvastovideo.prototype.setimagequality">
+                                    <a href="#CanvasToVideo.js-canvastovideo.prototype.setimagequality" class="permalink">#</a> CanvasToVideo.setImageQuality()
                                 </h2>
 
                                 <p>Sets the image quality saved from the canvas. Must be an integer between 0 and 100.</p>
@@ -1189,44 +1032,30 @@ ctv.setImageType(&#39;image/jpeg&#39;);
                                 
                                 
 
-                                
 
                                 <section class="parameters">
 
                                     <h3>Parameters</h3>
 
-                                    
 
-                                        
 
                                             <p>
                                                 <b>type</b>
-                                                
                                                     <code>Integer</code>
-                                                
-                                                
                                             </p>
                                             <p>Number between 0 and 100 specifying the quality.</p>
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
-                                        
 
-                                    
 
                                 </section>
 
-                                
 
                                 
 
-                                
 
                                 <section class="examples">
 
@@ -1235,59 +1064,55 @@ ctv.setImageType(&#39;image/jpeg&#39;);
                                     <pre><code>ctv.setImageQuality(60);
 </code></pre>
 
+
+
+
+
+
+
+
                                 </section>
 
                                 <section class="code">
 
                                     <h3>Code</h3>
 
-                                    <pre><code>CanvasToVideo.prototype.setImageQuality  = function (quality) {
+                                    <pre><code class="hljs">CanvasToVideo.prototype.setImageQuality  = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(quality)</span> </span>{
 
-        if (String(typeof quality) === &#x27;number&#x27;) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">String</span>(<span class="hljs-keyword">typeof</span> quality) === <span class="hljs-string">'number'</span>) {
 
-            this.imageQuality = quality;
+        <span class="hljs-keyword">this</span>.imageQuality = quality;
 
-        } else {
+    } <span class="hljs-keyword">else</span> {
 
-            throw new Error(quality + &#x27; is not a valid number. Must be a number between 0 (lowest quality) and 100 (highest quality).&#x27;);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(quality + <span class="hljs-string">' is not a valid number. Must be a number between 0 (lowest quality) and 100 (highest quality).'</span>);
 
-        }
+    }
 
-    };</code></pre>
+};</code></pre>
 
                                 </section>
 
                                 <h3>Returns</h3>
 
-                                
 
-                                    
 
-                                
 
-                                    
 
-                                        <p><code>void</code>  </p>
+                                        <p></p>
+                                        
 
-                                    
 
-                                
 
-                                    
 
-                                
 
                             </div>
 
-                        
 
-                    
 
-                
 
-                    
 
-                
+
 
             </div>
 

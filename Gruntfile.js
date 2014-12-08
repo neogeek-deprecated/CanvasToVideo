@@ -47,11 +47,12 @@ module.exports = function (grunt) {
 
         },
 
-        shell: {
+        doxdox: {
 
-            buildDoc: {
+            bootstrap: {
 
-                command: 'dox < CanvasToVideo.js > docs/CanvasToVideo.json; cd docs/; doxdox.py --title="CanvasToVideo" --description="An experiment in converting Canvas animations to video." > index.html; rm CanvasToVideo.json;'
+                input: 'CanvasToVideo.js',
+                output: 'docs/index.html'
 
             }
 
@@ -78,7 +79,6 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('default', [ 'uglify', 'casperjs', 'jslint' ]);
-    grunt.registerTask('docs', [ 'shell' ]);
+    grunt.registerTask('default', [  'jslint', 'uglify', 'casperjs', 'doxdox' ]);
 
 };
