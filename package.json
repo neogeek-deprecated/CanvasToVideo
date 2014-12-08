@@ -12,5 +12,6 @@
         "grunt-jslint": "1.1.12",
         "grunt-notify": "0.4.1",
         "matchdep": "0.3.0"
-    }
+    },
+    "private": true
 }
