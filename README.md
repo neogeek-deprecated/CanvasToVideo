@@ -1,4 +1,4 @@
-[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies) [![](http://doxdox.org/images/badge.svg)](http://doxdox.org/neogeek/CanvasToVideo)
+[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies) [![](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/neogeek/CanvasToVideo)
 
 #CanvasToVideo
 
