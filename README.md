@@ -1,12 +1,13 @@
-[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies) [![](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/neogeek/CanvasToVideo)
-
 #CanvasToVideo
 
 > An experiment in converting Canvas animations to video.
 
+[![](https://david-dm.org/neogeek/CanvasToVideo/dev-status.svg)](https://david-dm.org/neogeek/CanvasToVideo#info=devDependencies)
+[![](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/neogeek-deprecated/CanvasToVideo)
+
 ##Documentation
 
-[Read Online](http://doxdox.org/neogeek/CanvasToVideo)
+[Read Online](http://doxdox.org/neogeek-deprecated/CanvasToVideo)
 
 ##Setup
 
